@@ -1,21 +1,36 @@
 package com.trello.qa;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TeamCreationTests extends  TestBase{
   @Test
-  public void testTeamCreation(){
+  public void testTeamCreationFromPlusButtonOnHeader(){
+    clickOnPlusButtonOnHeader();
+    selectCreateTeamFromDropDown();
+    fillTeamCreationForm("qa21", "descr qa 21");
+    clickContinueButton();
+    //Assert
+
+
     Assert.assertTrue(isUserLoggedIn());
+  }
+
+  @Test(enabled=false)
+  public void testTeamCuncellCreationFromPlusButtonOnHeader(){
+    clickOnPlusButtonOnHeader();
+    selectCreateTeamFromDropDown();
+    fillTeamCreationForm("qa21", "descr qa 21");
+    clickXButton();
+    //Assert
+
+
+    Assert.assertTrue(isUserLoggedIn());
+  }
+
+  public void clickXButton() {
 
   }
 
-  public boolean isUserLoggedIn() {
-    return isElementPresent(By.cssSelector("[data-test-id='header-member-menu-button']"));
-  }
 
-  public boolean isElementPresent(By locator) {
-    return driver.findElements(locator).size()>0;
-  }
 }
