@@ -89,4 +89,21 @@ driver.quit();
   public void confirmBoardCreation() {
     click(By.cssSelector("[data-test-id='header-create-board-submit-button']"));
   }
+
+  protected String getTeamNameFromTeamPage() {
+    return driver.findElement(By.cssSelector("h1")).getText();
+  }
+
+  public void returnToHomePage() throws InterruptedException {
+    Thread.sleep(10000);
+    click(By.cssSelector("a[href='/']"));
+  }
+
+  public int getTeamsCount() {
+    return driver.findElements(By.xpath("//*[@class='_mtkwfAlvk6O3f']/../../..//li")).size();
+  }
+
+  public void clickXButton() {
+
+  }
 }
