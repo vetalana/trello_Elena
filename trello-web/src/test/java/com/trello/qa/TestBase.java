@@ -2,7 +2,10 @@ package com.trello.qa;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -14,7 +17,7 @@ public class TestBase {
   @BeforeClass
   public void setUp(){
     driver = new ChromeDriver();
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     driver.manage().window().maximize();
 
     openSite("https://trello.com");
@@ -94,14 +97,20 @@ driver.quit();
     return driver.findElement(By.cssSelector("h1")).getText();
   }
 
-  public void returnToHomePage() throws InterruptedException {
-    Thread.sleep(15000);
-    click(By.cssSelector("a[href='/']"));
+  public void returnToHomePage() {
+    if(isElementPresent(By.cssSelector("._3gUubwRZDWaOF0._2WhIqhRFBTG7Ry._2NubQcQM83YCVV"))){
+      new WebDriverWait(driver, 15)
+              .until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("._3gUubwRZDWaOF0._2WhIqhRFBTG7Ry._2NubQcQM83YCVV"))));
+      click(By.cssSelector("a[href='/']"));
+      click(By.cssSelector("a[href='/']"));
+    } else
     click(By.cssSelector("a[href='/']"));
   }
 
-  public int getTeamsCount() throws InterruptedException {
-    Thread.sleep(5000);
+  public int getTeamsCount()  {
+    new WebDriverWait(driver, 5)
+            .until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath("//*[@class='_mtkwfAlvk6O3f']/../../..//li")));
     return driver.findElements(By.xpath("//*[@class='_mtkwfAlvk6O3f']/../../..//li")).size();
   }
 
