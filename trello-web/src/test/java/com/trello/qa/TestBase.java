@@ -94,6 +94,8 @@ driver.quit();
   }
 
   protected String getTeamNameFromTeamPage() {
+    new WebDriverWait(driver, 15)
+            .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")));
     return driver.findElement(By.cssSelector("h1")).getText();
   }
 

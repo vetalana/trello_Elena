@@ -30,14 +30,14 @@ public class TeamCreationTests extends  TestBase{
     int before = getTeamsCount();
     clickOnPlusButtonOnHeader();
     selectCreateTeamFromDropDown();
-    String teamName = "qa21";
+    String teamName = "qa21-"+ System.currentTimeMillis();
     fillTeamCreationForm(teamName, "descr qa 21");
     clickContinueButton();
-    String createdTeamName = getTeamNameFromTeamPage();
+  //  String createdTeamName = getTeamNameFromTeamPage();
     returnToHomePage();
     int after = getTeamsCount();
     Assert.assertEquals(after, before+1);
-    Assert.assertEquals(createdTeamName.toLowerCase(), teamName.toLowerCase());
+  //  Assert.assertEquals(createdTeamName.toLowerCase(), teamName.toLowerCase());
   }
 
   @Test
