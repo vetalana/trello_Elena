@@ -28,10 +28,15 @@ public class TeamCreationTests extends  TestBase{
     clickContinueButton();
     String createdTeamName = getTeamNameFromTeamPage();
     returnToHomePage();
+  //  refreshPage();
     int after = getTeamsCount();
 
     Assert.assertEquals(after, before+1);
     Assert.assertEquals(createdTeamName, "h");
+  }
+
+  public void refreshPage() {
+    driver.navigate().refresh();
   }
 
   public void clickOnPlusButtonOnLeftNavMenu() {

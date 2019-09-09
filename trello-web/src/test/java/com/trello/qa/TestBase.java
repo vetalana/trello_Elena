@@ -95,15 +95,21 @@ driver.quit();
   }
 
   public void returnToHomePage() throws InterruptedException {
-    Thread.sleep(10000);
+    Thread.sleep(15000);
+    click(By.cssSelector("a[href='/']"));
     click(By.cssSelector("a[href='/']"));
   }
 
-  public int getTeamsCount() {
+  public int getTeamsCount() throws InterruptedException {
+    Thread.sleep(5000);
     return driver.findElements(By.xpath("//*[@class='_mtkwfAlvk6O3f']/../../..//li")).size();
   }
 
   public void clickXButton() {
 
+  }
+
+  public int getPersnalBoardsCount() {
+    return driver.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size()-1;
   }
 }
