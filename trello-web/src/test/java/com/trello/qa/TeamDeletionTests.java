@@ -9,31 +9,21 @@ import org.testng.annotations.Test;
 public class TeamDeletionTests extends TestBase {
 
   @Test
-  public void deleteTeamFromLeftNavMenu() {
-    int before = getTeamsCount();
-    clickOnFirstTeam();
-    openSettings();
-    deleteTeam();
+  public void deleteTeamFromLeftNavMenu() throws InterruptedException {
 
-    returnToHomePage();
-    int after = getTeamsCount();
+    int before = app.getTeamsCount();
+
+      app.clickOnFirstTeam();
+      app.openSettings();
+      app.deleteTeam();
+      app.returnToHomePage();
+      app.refreshPage();
+
+    int after = app.getTeamsCount();
     Assert.assertEquals(after, before - 1);
 
 
   }
 
-  public void deleteTeam() {
-    new WebDriverWait(driver, 10)
-            .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".quiet-button")));
-    click(By.cssSelector(".quiet-button"));
-    click(By.cssSelector(".js-confirm"));
-  }
 
-  public void openSettings() {
-    click(By.cssSelector(".icon-gear.icon-sm.OiX3P2i2J92Xat"));
-  }
-
-  public void clickOnFirstTeam() {
-    click(By.xpath("//*[@class='_mtkwfAlvk6O3f']/../../..//li"));
-  }
 }

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lena.trello-web.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Lena.trello-web.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lena.trello-web.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Lena.trello-web.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/trello-web.iml" filepath="$PROJECT_DIR$/.idea/modules/trello-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/trello-web.main.iml" filepath="$PROJECT_DIR$/.idea/modules/trello-web.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/trello-web.test.iml" filepath="$PROJECT_DIR$/.idea/modules/trello-web.test.iml" />
