@@ -1,10 +1,9 @@
-package com.trello.qa;
+package com.trello.qa.manager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeMethod;
 
 public class TeamHelper extends  HelperBase {
 
@@ -25,7 +24,7 @@ public class TeamHelper extends  HelperBase {
     click(By.cssSelector("[data-test-id='header-create-team-button']"));
   }
 
-  protected String getTeamNameFromTeamPage() {
+  public String getTeamNameFromTeamPage() {
     new WebDriverWait(driver, 20)
             .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")));
     return driver.findElement(By.cssSelector("h1")).getText();
@@ -77,5 +76,19 @@ public class TeamHelper extends  HelperBase {
       count = getTeamsCount();
       System.out.println(count);
     }
+  }
+
+  public void initEditTeamProfile() {
+    click(By.cssSelector(".js-edit-profile"));
+    //waitForElementAndClick(By.cssSelector(".js-edit-profile"), 10);
+  }
+
+  public void changeTeamProfile(String name, String description) {
+    type(By.name("displayName"), name);
+    type(By.name("desc"), description);
+  }
+
+  public void confirmEditTeam() {
+    click(By.cssSelector(".js-submit-profile"));
   }
 }

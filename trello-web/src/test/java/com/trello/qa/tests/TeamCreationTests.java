@@ -1,8 +1,7 @@
-package com.trello.qa;
+package com.trello.qa.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -53,7 +52,7 @@ public class TeamCreationTests extends TestBase {
     //Assert
 
 
-    Assert.assertTrue(app.sessionHelper.isUserLoggedIn());
+    Assert.assertTrue(app.getSessionHelper().isUserLoggedIn());
   }
 
   @AfterClass
