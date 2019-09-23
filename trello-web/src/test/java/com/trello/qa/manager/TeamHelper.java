@@ -25,8 +25,9 @@ public class TeamHelper extends  HelperBase {
   }
 
   public String getTeamNameFromTeamPage() {
-    new WebDriverWait(driver, 20)
-            .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")));
+//    new WebDriverWait(driver, 20)
+//            .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")));
+
     return driver.findElement(By.cssSelector("h1")).getText();
   }
 

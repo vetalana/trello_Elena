@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoardHelper extends  HelperBase{
   public BoardHelper(WebDriver driver) {
     super(driver);
@@ -73,4 +76,33 @@ public class BoardHelper extends  HelperBase{
   public void confirmFinishBoardDeletion() {
     click(By.cssSelector(".js-confirm.full"));
   }
+
+  public void createBoard() {
+    clickOnPlusButtonOnHeader();
+   selectCreateBoardFromDropDown();
+   fillBoardCreationForm("qa21", "descr qa 21");
+    confirmBoardCreation();
+    returnToHomePage();
+  }
+
+  public void changeBoardName(String newName) {
+    driver.findElement(By.cssSelector(".js-rename-board")).click();
+    driver.findElement(By.cssSelector("input.js-board-name-input")).sendKeys(newName);
+    returnToHomePage();
+  }
+
+  public String getPersonalBoardName() {
+    return driver.findElement(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).getText();
+  }
+
+  public String getNameAfterChange() {
+    return driver.findElement(By.cssSelector("js-rename-board")).getText();
+  }
+
+  public boolean findBoardByName(String name) {
+    return driver.findElement(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).getText().equals(name);
+
+  }
+
+
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.trello.qa.tests.BoardModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-09-23T13:26:38" hostname="Lena-Toshiba" time="32.627">
+  <properties/>
+  <testcase name="changeBoardName" classname="com.trello.qa.tests.BoardModificationTests" time="32.627"/>
+  <system-out><![CDATA[BB
+Yana_TESTnew
+Yana_TESTnew
+??
+Create new board
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

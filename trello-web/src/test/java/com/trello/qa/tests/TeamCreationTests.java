@@ -44,12 +44,12 @@ public class TeamCreationTests extends TestBase {
   }
 
   @Test(enabled = false)
-  public void testTeamCuncellCreationFromPlusButtonOnHeader() {
+  public void testTeamCuncellCreationFromPlusButtonOnHeader() throws InterruptedException {
     app.getTeamHelper().clickOnPlusButtonOnHeader();
     app.getTeamHelper().selectCreateTeamFromDropDown();
     app.getTeamHelper().fillTeamCreationForm("qa21", "descr qa 21");
     app.getTeamHelper().clickXButton();
-    //Assert
+    Thread.sleep(5000);
 
 
     Assert.assertTrue(app.getSessionHelper().isUserLoggedIn());
