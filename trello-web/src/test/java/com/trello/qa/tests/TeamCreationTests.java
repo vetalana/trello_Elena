@@ -1,8 +1,7 @@
-package com.trello.qa;
+package com.trello.qa.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -45,15 +44,15 @@ public class TeamCreationTests extends TestBase {
   }
 
   @Test(enabled = false)
-  public void testTeamCuncellCreationFromPlusButtonOnHeader() {
+  public void testTeamCuncellCreationFromPlusButtonOnHeader() throws InterruptedException {
     app.getTeamHelper().clickOnPlusButtonOnHeader();
     app.getTeamHelper().selectCreateTeamFromDropDown();
     app.getTeamHelper().fillTeamCreationForm("qa21", "descr qa 21");
     app.getTeamHelper().clickXButton();
-    //Assert
+    Thread.sleep(5000);
 
 
-    Assert.assertTrue(app.sessionHelper.isUserLoggedIn());
+    Assert.assertTrue(app.getSessionHelper().isUserLoggedIn());
   }
 
   @AfterClass
