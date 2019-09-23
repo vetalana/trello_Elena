@@ -100,6 +100,7 @@ public class BoardHelper extends  HelperBase{
   }
 
   public boolean findBoardByName(String name) {
+
     return driver.findElement(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).getText().equals(name);
 
   }

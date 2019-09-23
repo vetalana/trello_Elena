@@ -12,16 +12,14 @@ public class BoardModificationTests extends  TestBase {
   public void preconditions(){
     if(!app.getBoardHelper().isTherePersonalBoards()){
       app.getBoardHelper().createBoard();
-    };
+    }
   }
   @Test
   public void changeBoardName(){
     app.getBoardHelper().clickOnFirstPrivateBoard();
     String bName = "BB";
     app.getBoardHelper().changeBoardName(bName);
- //   String newName = app.getBoardHelper().getNameAfterChange();
 
-    //Assert.assertEquals();
     Assert.assertTrue(app.getBoardHelper().findBoardByName(bName));
 
   }

@@ -1,8 +1,15 @@
 package com.trello.qa.tests;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BoardDeletionTest extends TestBase {
+  @BeforeMethod
+  public void preconditions(){
+    if(!app.getBoardHelper().isTherePersonalBoards()){
+      app.getBoardHelper().createBoard();
+    }
+  }
   @Test
   public void deletionBoardTest() throws InterruptedException {
     int before = app.getBoardHelper().getPersnalBoardsCount();
