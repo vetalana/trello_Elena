@@ -1,15 +1,19 @@
 package com.trello.qa.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class TeamDeletionTests extends TestBase {
-
+  @BeforeMethod
+  public void precoditions() throws InterruptedException {
+    if(!app.getTeamHelper().isTeamsPresent()){
+      app.getTeamHelper().createTeam();
+    }
+  }
   @Test
   public void deleteTeamFromLeftNavMenu() throws InterruptedException {
-
     int before = app.getTeamHelper().getTeamsCount();
-
       app.getTeamHelper().clickOnFirstTeam();
       app.getTeamHelper().openSettings();
       app.getTeamHelper().deleteTeam();
