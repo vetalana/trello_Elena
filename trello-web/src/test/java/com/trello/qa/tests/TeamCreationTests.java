@@ -1,6 +1,6 @@
 package com.trello.qa.tests;
 
-import com.trello.qa.manager.TeamData;
+import com.trello.qa.model.TeamData;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class TeamCreationTests extends TestBase {
 
   @Test(dataProvider = "validTeams")
   public void testTeamCreationFromPlusButtonOnHeaderWithDataProvider
-          (String teamName, String description) {
+          (String teamName, String description) throws InterruptedException {
     TeamData team =
             new TeamData().withTeamName(teamName).withDescription(description);
     int before = app.getTeamHelper().getTeamsCount();
@@ -95,13 +96,17 @@ public class TeamCreationTests extends TestBase {
     app.getTeamHelper().clickOnPlusButtonOnHeader();
     app.getTeamHelper().selectCreateTeamFromDropDown();
     String teamName = "qa21-" + System.currentTimeMillis();
-    app.getTeamHelper().fillTeamCreationForm(new TeamData()
+    TeamData team = new TeamData()
             .withTeamName(teamName)
-            .withDescription("descr qa 21"));
+            .withDescription("descr qa 21");
+    app.getTeamHelper().fillTeamCreationForm(team);
     app.getTeamHelper().clickContinueButton();
     //  String createdTeamName = getTeamNameFromTeamPage();
     app.getTeamHelper().returnToHomePage();
     int after = app.getTeamHelper().getTeamsCount();
+
+
+
     Assert.assertEquals(after, before + 1);
     //  Assert.assertEquals(createdTeamName.toLowerCase(), teamName.toLowerCase());
   }
@@ -114,13 +119,13 @@ public class TeamCreationTests extends TestBase {
             new TeamData()
             .withTeamName("h"));
     app.getTeamHelper().clickContinueButton();
-    String createdTeamName = app.getTeamHelper().getTeamNameFromTeamPage();
+ //   String createdTeamName = app.getTeamHelper().getTeamNameFromTeamPage();
     app.getTeamHelper().returnToHomePage();
     //  refreshPage();
     int after = app.getTeamHelper().getTeamsCount();
 
     Assert.assertEquals(after, before + 1);
-    Assert.assertEquals(createdTeamName, "h");
+   // Assert.assertEquals(createdTeamName, "h");
   }
 
   @Test(enabled = false)
@@ -137,7 +142,7 @@ public class TeamCreationTests extends TestBase {
     Assert.assertTrue(app.getSessionHelper().isUserLoggedIn());
   }
 
-  @AfterClass(enabled = false)
+  @Test
   public void postActions() throws InterruptedException {
     app.getTeamHelper().cleanTeams();
   }

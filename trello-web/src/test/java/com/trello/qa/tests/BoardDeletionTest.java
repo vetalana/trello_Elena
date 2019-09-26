@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class BoardDeletionTest extends TestBase {
   @BeforeMethod
-  public void preconditions(){
+  public void preconditions() throws InterruptedException {
     if(!app.getBoardHelper().isTherePersonalBoards()){
       app.getBoardHelper().createBoard();
     }

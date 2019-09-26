@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BoardModificationTests extends  TestBase {
   @BeforeMethod
-  public void preconditions(){
+  public void preconditions() throws InterruptedException {
     if(!app.getBoardHelper().isTherePersonalBoards()){
       app.getBoardHelper().createBoard();
     }

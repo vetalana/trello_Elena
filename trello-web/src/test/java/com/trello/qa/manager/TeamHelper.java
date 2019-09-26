@@ -1,9 +1,14 @@
 package com.trello.qa.manager;
 
+import com.trello.qa.model.TeamData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamHelper extends  HelperBase {
 
@@ -31,11 +36,12 @@ public class TeamHelper extends  HelperBase {
     return driver.findElement(By.cssSelector("h1")).getText();
   }
 
-  public int getTeamsCount() {
-    new WebDriverWait(driver, 5)
-            .until(ExpectedConditions.presenceOfElementLocated(
-                    By.xpath("//*[@class='_mtkwfAlvk6O3f']/../../..//li")));
-    return driver.findElements(By.xpath("//*[@class='_mtkwfAlvk6O3f']/../../..//li")).size();
+  public int getTeamsCount() throws InterruptedException {
+Thread.sleep(5000);
+//    new WebDriverWait(driver, 5)
+//            .until(ExpectedConditions.presenceOfElementLocated(
+       //             By.xpath("//*[data-test-id='home-team-tab-name']")));//*[@class='_mtkwfAlvk6O3f']/../../..//li")));
+    return driver.findElements(By.xpath("//*[@data-test-id='home-team-tab-name']/../..")).size();
   }
 
   public void clickXButton() {
@@ -45,7 +51,8 @@ public class TeamHelper extends  HelperBase {
   public void openSettings() throws InterruptedException {
     //waitForElementAndClick(By.xpath("//*[@class='icon-gear icon-sm OiX3P2i2J92Xat']/../../.."), 20);
     Thread.sleep(5000);
-    click(By.xpath("//*[@class='icon-gear icon-sm OiX3P2i2J92Xat']/../../.."));
+    click(By.cssSelector("ul .icon-gear.icon-sm"));
+    //click(By.xpath("//*[@class='icon-gear icon-sm OiX3P2i2J92Xat']/../../.."));
     //   click(By.cssSelector("[href$=account]"));
     //waitForElementAndClick(By.cssSelector("li .icon-gear.icon-sm.OiX3P2i2J92Xat"), 30);
   }
@@ -72,10 +79,10 @@ public class TeamHelper extends  HelperBase {
       clickOnFirstTeam();
       openSettings();
       deleteTeam();
-     // returnToHomePage();
+      returnToHomePage();
       refreshPage();
       count = getTeamsCount();
-      System.out.println(count);
+      System.out.println("Now Teams count is: " +count);
     }
   }
 
@@ -93,7 +100,7 @@ public class TeamHelper extends  HelperBase {
     click(By.cssSelector(".js-submit-profile"));
   }
 
-  public boolean isTeamsPresent() {
+  public boolean isTeamsPresent() throws InterruptedException {
     return getTeamsCount()>0;
   }
 
@@ -106,4 +113,6 @@ public class TeamHelper extends  HelperBase {
     clickContinueButton();
     returnToHomePage();
   }
+
+
 }

@@ -1,21 +1,19 @@
 package com.trello.qa.manager;
 
+import com.trello.qa.model.BoardData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BoardHelper extends  HelperBase{
   public BoardHelper(WebDriver driver) {
     super(driver);
   }
 
-  public void fillBoardCreationForm(String boardName, String s) {
-    type(By.cssSelector("[data-test-id='header-create-board-title-input']"), boardName);
+  public void fillBoardCreationForm(BoardData board) {
+    type(By.cssSelector("[data-test-id='header-create-board-title-input']"), board.getBoardName());
 
     if (isElementPresent(By.cssSelector(".W6rMLOx8U0MrPx"))) {
       click(By.cssSelector(".W6rMLOx8U0MrPx"));
@@ -28,11 +26,14 @@ public class BoardHelper extends  HelperBase{
     click(By.cssSelector("[data-test-id='header-create-board-button']"));
   }
 
-  public void confirmBoardCreation() {
-    waitForElementAndClick(By.cssSelector("[data-test-id='header-create-board-submit-button']"), 20);
+  public void confirmBoardCreation() throws InterruptedException {
+
+    click(By.cssSelector("[data-test-id='header-create-board-submit-button']"));
+    //waitForElementAndClick(By.cssSelector("[data-test-id='header-create-board-submit-button']"), 20);
   }
 
-  public int getPersnalBoardsCount() {
+  public int getPersnalBoardsCount() throws InterruptedException {
+    Thread.sleep(5000);
     return driver.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size() - 1;
   }
 
@@ -77,10 +78,10 @@ public class BoardHelper extends  HelperBase{
     click(By.cssSelector(".js-confirm.full"));
   }
 
-  public void createBoard() {
+  public void createBoard() throws InterruptedException {
     clickOnPlusButtonOnHeader();
    selectCreateBoardFromDropDown();
-   fillBoardCreationForm("qa21", "descr qa 21");
+   fillBoardCreationForm(new BoardData().setBoardName("qa21"));
     confirmBoardCreation();
     returnToHomePage();
   }
