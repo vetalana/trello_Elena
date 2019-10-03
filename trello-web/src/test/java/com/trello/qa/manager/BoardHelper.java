@@ -34,6 +34,7 @@ public class BoardHelper extends  HelperBase{
 
   public int getPersnalBoardsCount() throws InterruptedException {
     Thread.sleep(10000);
+    
     return driver.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size() - 1;
   }
 
