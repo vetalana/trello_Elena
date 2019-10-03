@@ -38,10 +38,8 @@ public class TeamCreationTests extends TestBase {
               new TeamData()
               .withTeamName(split[0])
               .withDescription(split[1])});
-
       line = reader.readLine();
     }
-
     return  list.iterator();
   }
 
@@ -52,24 +50,20 @@ public class TeamCreationTests extends TestBase {
       app.getSessionHelper().login("elena.telran@yahoo.com", "12345.com");
     }
   }
-//  @Test(dataProvider = "validTeams")
-//  public void testTeamCreationFromPlusButtonOnHeaderWithDataProviderFromcsv
-//          (TeamData team) {
-//    TeamData team =
-//            new TeamData().withTeamName(teamName).withDescription(description);
-//    int before = app.getTeamHelper().getTeamsCount();
-//    app.getTeamHelper().clickOnPlusButtonOnHeader();
-//    app.getTeamHelper().selectCreateTeamFromDropDown();
-//
-//    app.getTeamHelper().fillTeamCreationForm(team);
-//
-//    app.getTeamHelper().clickContinueButton();
-//    //  String createdTeamName = getTeamNameFromTeamPage();
-//    app.getTeamHelper().returnToHomePage();
-//    int after = app.getTeamHelper().getTeamsCount();
-//    Assert.assertEquals(after, before + 1);
-//    //  Assert.assertEquals(createdTeamName.toLowerCase(), teamName.toLowerCase());
-//  }
+  @Test(dataProvider = "validTeamsfromcsv")
+  public void testTeamCreationFromPlusButtonOnHeaderWithDataProviderFromcsv
+          (TeamData team) throws InterruptedException {
+    int before = app.getTeamHelper().getTeamsCount();
+    app.getTeamHelper().clickOnPlusButtonOnHeader();
+    app.getTeamHelper().selectCreateTeamFromDropDown();
+    app.getTeamHelper().fillTeamCreationForm(team);
+    app.getTeamHelper().clickContinueButton();
+    //  String createdTeamName = getTeamNameFromTeamPage();
+    app.getTeamHelper().returnToHomePage();
+    int after = app.getTeamHelper().getTeamsCount();
+    Assert.assertEquals(after, before + 1);
+    //  Assert.assertEquals(createdTeamName.toLowerCase(), teamName.toLowerCase());
+  }
 
   @Test(dataProvider = "validTeams")
   public void testTeamCreationFromPlusButtonOnHeaderWithDataProvider
