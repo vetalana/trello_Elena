@@ -7,7 +7,7 @@
 
             <class name="com.trello.qa.tests.BoardCreationTests"/>
             <class name="com.trello.qa.tests.BoardDeletionTest"/>
-           
+
         </classes>
     </test>
 </suite>
